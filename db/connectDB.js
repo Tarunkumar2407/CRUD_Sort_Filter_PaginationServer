@@ -7,9 +7,8 @@ const connectDB = async (DATABASE_URL) => {
         useUnifiedTopology: true
       })
     return console.log("Connection Successfull")
-   } catch (error) {
+   } catch (error){
     console.log("Error in connecting to database", error)
    }
 }
-
 export default connectDB

@@ -18,6 +18,12 @@ app.use(express.json())
 //implementing routes
 app.use("/user", router)
 
+//for getting images from server
+app.use("/uploads", express.static("./uploads"));
+
+//for exporting users csv
+app.use("/files", express.static("./public/files"))
+
 //connecting database
 connectDB(DATABASE_URL)
 

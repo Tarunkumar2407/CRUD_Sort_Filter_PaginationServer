@@ -7,5 +7,10 @@ const router = express.Router()
 router.get('/',UserController.homepage)
 router.post("/register",upload.single("user_profile"),UserController.registerUser)
 router.get("/getallusers",UserController.gettingAllUser)
-
+router.get("/getuser/:id", UserController.getUserById)
+router.put("/edit/:id",upload.single("user_profile"), UserController.updateById)
+router.delete("/delete/:id",UserController.deleteUser)
+router.put("/status/:id",UserController.updateStatus)
+router.put("/status/:id",UserController.updateStatus)
+router.get('/usersexport', UserController.exportUser)
 export default router
