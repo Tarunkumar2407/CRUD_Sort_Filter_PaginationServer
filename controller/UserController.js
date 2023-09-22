@@ -148,23 +148,15 @@ class UserController {
   static updateStatus = async (req, res) => {
     const { id } = req.params;
     const { data } = req.body;
+
     try {
-        const userStatus = await findByIdAndUpdate(
-            { _id: id },
-            { status: data },
-            { new: true }
-            );
-            res.status(200).json(userStatus);
-            console.log(req.body)
-            console.log(userStatus)
-        } catch (error) {
-            // res.send(error)
-            res
-            .status(401)
-            .json({ status: "failed", message: "Error in updating user Status" });
-        }
-    };
-    
+        const userstatusupdate = await users.findByIdAndUpdate({ _id: id }, { status: data }, { new: true });
+        res.status(200).json(userstatusupdate)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+  };
+
   static exportUser = async (req, res) => {
     const usersData = await userModel.find();
     try {
@@ -206,8 +198,7 @@ class UserController {
         WritableStream.end();
 
     } catch (error) {
-        res.send(error)
-        // res.status(401).json({"status": "failed", "message": "Error in Exporting to csv"})
+        res.status(401).json({"status": "failed", "message": "Error in Exporting to csv"})
     }
   };
 }
